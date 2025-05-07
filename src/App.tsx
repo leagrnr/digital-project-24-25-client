@@ -6,15 +6,23 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
+import { useTheme } from '@mui/material/styles';
+
 
 export default function SimpleBottomNavigation() {
     const [value, setValue] = React.useState(0);
+    const theme = useTheme();
 
     const actionStyle = {
+        '&.Mui-selected': {
+            color: theme.palette.tertiary.main,
+        },
         '& .MuiBottomNavigationAction-label': {
-            fontSize: '2vw',
+            fontSize: '3vw',
+            width: 'max-content',
             '&.Mui-selected': {
-                fontSize: '2.25vw',
+                fontSize: '3.5vw',
+                width: 'max-content',
             },
         },
     };

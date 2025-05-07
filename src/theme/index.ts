@@ -4,11 +4,14 @@ const theme = createTheme({
     palette: {
         mode: 'light', // ou 'dark'
         primary: {
-            main: '#756e2c',
+            main: '#6E866B',
         },
         secondary: {
-            main: '#9c27b0',
+            main: '#DD6048',
         },
+        tertiary: {
+            main: '#F5A50D',
+        }
     },
     typography: {
         fontFamily: 'Inter, Roboto, sans-serif',
