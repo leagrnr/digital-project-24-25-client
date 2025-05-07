@@ -1,8 +1,16 @@
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+    interface Palette {
+        tertiary?: Palette['primary'];
+    }
+    interface PaletteOptions {
+        tertiary?: PaletteOptions['primary'];
+    }
+}
+
 const theme = createTheme({
     palette: {
-        mode: 'light', // ou 'dark'
         primary: {
             main: '#6E866B',
         },
@@ -11,7 +19,7 @@ const theme = createTheme({
         },
         tertiary: {
             main: '#F5A50D',
-        }
+        },
     },
     typography: {
         fontFamily: 'Inter, Roboto, sans-serif',
