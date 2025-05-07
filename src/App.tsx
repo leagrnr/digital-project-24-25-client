@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
+import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function SimpleBottomNavigation() {
+    const [value, setValue] = React.useState(0);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <Box
+            sx={{
+                width: '100%',
+                position: 'fixed',
+                bottom: 0,
+                display: { xs: 'block', sm: 'none' } // 📱 mobile only
+            }}
+        >
+            <BottomNavigation
+                showLabels
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                }}
+            >
+                <BottomNavigationAction label="Accueil" icon={<HomeOutlinedIcon />} />
+                <BottomNavigationAction label="Tableau de bord" icon={<SpaceDashboardOutlinedIcon />} />
+                <BottomNavigationAction label="Cours" icon={<BookOutlinedIcon />} />
+                <BottomNavigationAction label="Quiz" icon={<QuizOutlinedIcon />} />
+            </BottomNavigation>
+        </Box>
+    );
 }
-
-export default App
