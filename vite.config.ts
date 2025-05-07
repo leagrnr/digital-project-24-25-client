@@ -8,16 +8,16 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        "short_name": "MDN",
-        "name": "MDN Web Docs",
+        "short_name": "Kit it",
+        "name": "Kit it",
         "icons": [
           {
-            "src": "/favicon-192x192.png",
+            "src": "./src/assets/favicon/web-app-manifest-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
           },
           {
-            "src": "/favicon-512x512.png",
+            "src": "./src/assets/favicon/web-app-manifest-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
           }
