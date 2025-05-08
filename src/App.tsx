@@ -1,9 +1,16 @@
-import MobileNavigation from './components/mobile/navbar';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import MobileNavigation from './components/mobile/NavbarComponent';
+import Navbar from './components/web/NavbarComponent';
 
-export default function SimpleBottomNavigation() {
+export default function App() {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
     return (
         <>
-            <MobileNavigation />
+            <Navbar />
+            {isMobile && <MobileNavigation />}
         </>
     );
 }
