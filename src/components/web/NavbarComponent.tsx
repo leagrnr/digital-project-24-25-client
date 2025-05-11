@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Logo from '../../assets/logo.svg';
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -29,9 +30,9 @@ export default function NavBar() {
 
     const menuItems = {
         Accueil: [],
-        "Tableau de bord": ["Statistiques", "Mes objectifs", "Rapports"],
+        "Tableau de bord": [],
         Cours: ["Ecologie", "Sécurité"],
-        Quiz: ["Ecologie", "Sécurité", "Quizz de la semaine"],
+        Quiz: ["Ecologie", "Sécurité"],
     };
 
     return (
@@ -42,7 +43,7 @@ export default function NavBar() {
                 </Box>
 
                 {isMobile ? (
-                    <IconButton>
+                    <IconButton component={Link} to="/setting">
                         <AccountCircle sx={{ color: '#6E866B' }} />
                     </IconButton>
                 ) : (
@@ -58,26 +59,40 @@ export default function NavBar() {
                                 const hasMenu = menuItems[label].length > 0;
                                 return (
                                     <div key={label}>
-                                        <Button
-                                            onClick={hasMenu ? (e) => handleMenuOpen(e, label) : undefined}
-                                            aria-controls={hasMenu && menu === label ? "simple-menu" : undefined}
-                                            aria-haspopup={hasMenu || undefined}
-                                        >
-                                            {label}
-                                        </Button>
-
-                                        {hasMenu && (
-                                            <Menu
-                                                anchorEl={anchorEl}
-                                                open={menu === label}
-                                                onClose={handleClose}
+                                        {hasMenu ? (
+                                            <>
+                                                <Button
+                                                    onClick={(e) => handleMenuOpen(e, label)}
+                                                    aria-controls={menu === label ? "simple-menu" : undefined}
+                                                    aria-haspopup="true"
+                                                >
+                                                    {label}
+                                                </Button>
+                                                <Menu
+                                                    anchorEl={anchorEl}
+                                                    open={menu === label}
+                                                    onClose={handleClose}
+                                                >
+                                                    {menuItems[label].map((item) => (
+                                                        <MenuItem
+                                                            key={item}
+                                                            onClick={handleClose}
+                                                            sx={{ color: '#6E866B' }}
+                                                            component={Link}
+                                                            to={`/${label.toLowerCase()}/${item}`}
+                                                        >
+                                                            {item}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Menu>
+                                            </>
+                                        ) : (
+                                            <Button
+                                                component={Link}
+                                                to={label === "Accueil" ? "/" : label === "Tableau de bord" ? "/dashboard" : `/${label.toLowerCase().replace(/\s+/g, '-')}`}
                                             >
-                                                {menuItems[label].map((item) => (
-                                                    <MenuItem key={item} onClick={handleClose} sx={{ color: '#6E866B' }}>
-                                                        {item}
-                                                    </MenuItem>
-                                                ))}
-                                            </Menu>
+                                                {label}
+                                            </Button>
                                         )}
                                     </div>
                                 );
@@ -92,7 +107,7 @@ export default function NavBar() {
                             />
                         </Box>
 
-                        <IconButton>
+                        <IconButton component={Link} to="/setting">
                             <AccountCircle sx={{ color: '#6E866B' }} />
                         </IconButton>
                     </Box>

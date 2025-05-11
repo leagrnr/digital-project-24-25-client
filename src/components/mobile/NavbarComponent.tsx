@@ -7,6 +7,7 @@ import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlin
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
 import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 
 export default function MobileNavigation() {
@@ -43,10 +44,34 @@ export default function MobileNavigation() {
                     setValue(newValue);
                 }}
             >
-                <BottomNavigationAction label="Accueil" icon={<HomeOutlinedIcon />} sx={actionStyle} />
-                <BottomNavigationAction label="Tableau de bord" icon={<SpaceDashboardOutlinedIcon />} sx={actionStyle} />
-                <BottomNavigationAction label="Cours" icon={<BookOutlinedIcon />} sx={actionStyle} />
-                <BottomNavigationAction label="Quiz" icon={<QuizOutlinedIcon />} sx={actionStyle} />
+                <BottomNavigationAction
+                    label="Accueil"
+                    icon={<HomeOutlinedIcon />}
+                    sx={actionStyle}
+                    component={Link}
+                    to="/"
+                />
+                <BottomNavigationAction
+                    label="Tableau de bord"
+                    icon={<SpaceDashboardOutlinedIcon />}
+                    sx={actionStyle}
+                    component={Link}
+                    to="/dashboard"
+                />
+                <BottomNavigationAction
+                    label="Cours"
+                    icon={<BookOutlinedIcon />}
+                    sx={actionStyle}
+                    component={Link}
+                    to="/lesson/Ecologie"
+                />
+                <BottomNavigationAction
+                    label="Quiz"
+                    icon={<QuizOutlinedIcon />}
+                    sx={actionStyle}
+                    component={Link}
+                    to="/quiz/Ecologie"
+                />
             </BottomNavigation>
         </Box>
     );
