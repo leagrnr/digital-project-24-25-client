@@ -37,7 +37,7 @@ export default function NavBar() {
 
     return (
         <AppBar position="fixed" color="default" elevation={1}>
-            <Toolbar sx={{ justifyContent: "space-between" }}>
+            <Toolbar sx={{ justifyContent: "space-between", minHeight: "10vh !important" }} >
                 <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                     <img src={Logo} alt="Logo" style={{ height: 40 }} />
                 </Box>
