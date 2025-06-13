@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.bg-custom-primary {
+    background-color: #6E866B;
+}
+
+.bg-custom-secondary {
+    background-color: #83A790;
+}
+
+* {
+    font-family: "Roboto Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
