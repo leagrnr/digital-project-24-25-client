@@ -8,6 +8,10 @@
     background-color: #83A790;
 }
 
+.bg-custom-tertiary {
+    background-color: #F5A50D;
+}
+
 * {
     font-family: "Roboto Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

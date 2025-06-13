@@ -1,0 +1,7 @@
+{
+  "progression": [
+    { "month": "Avril", "coursLus": 12, "quizzReussis": 8 },
+    { "month": "Mai", "coursLus": 18, "quizzReussis": 14 },
+    { "month": "Juin", "coursLus": 20, "quizzReussis": 17 }
+  ]
+}

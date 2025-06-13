@@ -2,7 +2,7 @@ import Ampoule from '../../assets/ampoule.png'
 
 export default function AnnecdoteComponent() {
     return (
-        <div className="flex flex-row items-center justify-center mt-[11vh] bg-custom-primary h-[15vh]">
+        <div className="flex flex-row items-center justify-center mt-[5vh] bg-custom-primary h-[15vh] m-0 md:m-8 p-4 md:p-8">
             <div
                 className="bg-custom-secondary rounded-full flex items-center justify-center mr-4 w-20 h-20 md:w-[10vw] md:h-[10vw]"
             >
