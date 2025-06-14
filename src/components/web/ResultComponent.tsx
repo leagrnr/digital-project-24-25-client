@@ -63,7 +63,7 @@ export default function ResultComponent() {
     return (
         <div className="flex flex-col lg:flex-row items-center justify-between bg-custom-primary mt-[10vh] rounded-b-3xl px-4 md:px-8 py-8 md:py-12 min-h-[70vh] w-full">
             {/* Texte à gauche */}
-            <div className="w-full lg:w-1/2 text-white space-y-6 md:space-y-8">
+            <div className="w-full lg:w-[40%] text-white space-y-6 md:space-y-8 mx-auto">
                 <h2 className="text-xl md:text-3xl font-semibold">Vos résultats de janvier</h2>
                 <p>Bravo ! Ton empreinte carbone est très faible.</p>
                 <p>
@@ -85,7 +85,7 @@ export default function ResultComponent() {
             </div>
 
             {/* GRAPHIQUES */}
-            <div className="w-full lg:w-1/2 mt-8 lg:mt-0 flex flex-col items-center">
+            <div className="w-full lg:w-[40%] mt-8 lg:mt-0 flex flex-col items-center mx-auto">
                 {isMobile ? (
                     <div className="relative w-full max-w-full">
                         {/* Slide actif */}
