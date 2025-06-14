@@ -12,6 +12,15 @@
     background-color: #F5A50D;
 }
 
+.bg-custom-quaternary {
+    background-color: #DD6048;
+}
+
+.text-custom-primary
+{
+    color: #6E866B;
+}
+
 * {
     font-family: "Roboto Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
