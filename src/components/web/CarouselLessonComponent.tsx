@@ -102,10 +102,10 @@ const CourseCarousel = () => {
     const visibleCourses = getVisibleCourses();
 
     return (
-        <div className="w-full max-w-7xl mt-[10vh] p-6 pb-16 mx-auto flex flex-col items-center">
+        <div className="w-full max-w-7xl mt-[10vh] p-6 pb-16 mx-auto flex flex-col ">
             {/* Titre principal */}
             <div className=" mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4 text-left ml-4">
                     On commence un cours ?
                 </h2>
             </div>

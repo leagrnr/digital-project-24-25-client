@@ -11,6 +11,7 @@ import LessonDetail from '../src/views/LessonDetail';
 import QuizDetail from "./views/QuizDetail.tsx";
 import QuizList from "./views/QuizList.tsx";
 import Setting from "./views/Setting.tsx";
+import FooterComponent from "./components/web/FooterComponent.tsx";
 
 
 
@@ -34,6 +35,7 @@ export default function App() {
                     <Route path="/quiz/:category/:id" element={<QuizDetail />} />
                     <Route path="/setting" element={<Setting />} />
                 </Routes>
+                < FooterComponent />
             </Router>
 
         </>

@@ -64,7 +64,7 @@ export default function ResultComponent() {
         <div className="flex flex-col lg:flex-row items-center justify-between bg-custom-primary mt-[10vh] rounded-b-3xl px-4 md:px-8 py-8 md:py-12 min-h-[70vh] w-full">
             {/* Texte à gauche */}
             <div className="w-full lg:w-[40%] text-white space-y-6 md:space-y-8 mx-auto">
-                <h2 className="text-xl md:text-3xl font-semibold">Vos résultats de janvier</h2>
+                <h2 className="text-xl md:text-3xl font-semibold">Vos résultats de juin</h2>
                 <p>Bravo ! Ton empreinte carbone est très faible.</p>
                 <p>
                     Ton impact annuel est équivalent à un Français qui vit en mode éco-responsable

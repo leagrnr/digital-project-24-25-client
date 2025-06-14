@@ -10,7 +10,6 @@ export default function Home() {
             <ResultComponent />
             <AnnecdoteComponent />
             <CourseCarousel />
-            <FooterComponent />
         </div>
     );
 }
