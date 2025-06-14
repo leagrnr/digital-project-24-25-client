@@ -2,7 +2,7 @@ import Logo from '../../assets/logo.svg';
 
 export default function FooterComponent() {
     return (
-        <footer className="bg-gray-100 py-8">
+        <footer className="bg-gray-100 py-8 mt-[5vh]">
             <div className="flex flex-col md:flex-row items-center md:items-start justify-around gap-8 md:gap-0">
                 {/* Logo */}
                 <div className="flex-shrink-0 mb-6 md:mb-0">
