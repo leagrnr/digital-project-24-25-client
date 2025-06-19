@@ -13,12 +13,12 @@ const CarbonTest: React.FC = () => {
 
     return (
         <>
-            <div className="flex flex-col items-center justify-center mt-8 mb-4 w-11/12 sm:w-4/5 mx-auto">
+            <div className="flex flex-col items-center justify-center mt-6 mb-4 w-11/12 mx-auto px-2 ">
                 <div className="flex items-center justify-between w-full mb-4">
                     <h2 className="text-2xl sm:text-3xl font-bold">Test Bilan Carbonne</h2>
                 </div>
             </div>
-            <div className="w-11/12 sm:w-4/5 mx-auto flex flex-col items-center justify-center border border-gray-300 rounded-lg py-6 sm:py-8 px-2 sm:px-0">
+            <div className="flex flex-col items-center justify-center mt-6 mb-4 w-11/12 mx-auto py-[5vh] border-gray-100 border-2 rounded-lg shadow-lg">
                 <h2 className="mb-4 sm:mb-6 text-base sm:text-lg font-semibold text-center">{question}</h2>
                 <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 w-full sm:w-4/5 justify-center">
                     {answers.map((answer, idx) => (
