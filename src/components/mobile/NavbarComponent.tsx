@@ -35,6 +35,7 @@ export default function MobileNavigation() {
                 position: 'fixed',
                 bottom: 0,
                 display: { xs: 'block', sm: 'none' },
+                zIndex: (theme) => theme.zIndex.appBar + 1,
             }}
         >
             <BottomNavigation

@@ -10,7 +10,7 @@ export default function ProgressionGraphic() {
     const [chartType, setChartType] = useState<'line' | 'bar'>('line');
 
     return (
-        <div className="flex flex-col items-center justify-center mt-6 mb-4 w-4/5 mx-auto px-2 ">
+        <div className="flex flex-col items-center justify-center mt-6 mb-4 w-11/12 mx-auto px-2 ">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-2 mb-4">
                 <h2 className="text-2xl sm:text-3xl font-bold">Votre progression</h2>
                 <div>
@@ -26,7 +26,7 @@ export default function ProgressionGraphic() {
                     </select>
                 </div>
             </div>
-            <div className="w-full bg-white rounded-xl shadow mt-2 sm:mt-4">
+            <div className="w-full bg-white rounded-xl shadow mt-2 sm:mt-4 py-[2vh] px-[1vw] sm:px-[2vw]">
                 <div className="w-full h-[250px] sm:h-[350px]">
                     <ResponsiveContainer width="100%" height="100%">
                         {chartType === 'line' ? (
