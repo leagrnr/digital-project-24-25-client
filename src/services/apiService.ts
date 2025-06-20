@@ -26,13 +26,16 @@ class ApiService {
 
     private async request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
         const url = `${this.baseURL}${endpoint}`;
-
         const token = localStorage.getItem('token');
+        const headers: Record<string, string> = {
+            'Content-Type': 'application/json',
+            ...options.headers,
+        };
+        if (token) {
+            headers['Authorization'] = token; // le token est déjà sous la forme "Bearer <token>"
+        }
         const config: RequestInit = {
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            },
+            headers,
             credentials: 'include',
             ...options,
         };
@@ -70,7 +73,8 @@ class ApiService {
 
     // === USERS ===
     async getCurrentUser(): Promise<User> {
-        return this.request<User>('/api/user');
+        const response = await this.request<{ user: User }>('/api/user');
+        return response.user;
     }
 
     async getUsers(): Promise<User[]> {

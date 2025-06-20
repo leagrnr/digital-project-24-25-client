@@ -1,21 +1,17 @@
-import { useAuth } from '../contexts/AuthContext';
-import {useEffect} from "react";
-
-
+// import { useAuth } from '../contexts/AuthContext.tsx';
+import AnnecdoteComponent from "../components/web/AnnecdoteComponent.tsx";
+import ResultComponent from "../components/web/ResultComponent.tsx";
+import CourseCarousel from "../components/web/CarouselLessonComponent.tsx";
 
 export default function Home() {
-    const { user, loading } = useAuth();
-
-    useEffect(() => {
-        console.log("User:", user);
-    }, [user]);
-
-    if (loading) return <p>Chargement...</p>;
-
+    // const { user } = useAuth();
 
     return (
         <div>
-            < h2 className={"mt-[15vh]"}>Bienvenue{user?.email ? `, ${user.email}` : ''} !</h2>
+            {/*<h2 className={"mt-[15vh]"}>Bienvenue{user?.email ? `, ${user.email}` : ''} !</h2>*/}
+            <ResultComponent />
+            <AnnecdoteComponent />
+            <CourseCarousel />
         </div>
     );
 }
