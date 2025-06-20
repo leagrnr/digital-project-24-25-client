@@ -41,10 +41,9 @@ const LessonList: React.FC = () => {
                 flexDirection: 'column',
                 gap: 3,
                 padding: 2,
-                paddingTop: '15vh', // ⬅️ compense la navbar fixed
+                paddingTop: '15vh',
             }}
         >
-        {/* Filtres haut */}
             <Box
                 sx={{
                     display: 'flex',
@@ -75,8 +74,6 @@ const LessonList: React.FC = () => {
                     sx={{ minWidth: 250 }}
                 />
             </Box>
-
-            {/* Tableau centré avec scroll interne */}
             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
                 <TableContainer
                     component={Paper}
