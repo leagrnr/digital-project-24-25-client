@@ -1,63 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, ArrowUpRight, Leaf, Users, Smartphone, Shield } from 'lucide-react';
-
-// Données des cours
-const coursesData = [
-    {
-        id: 1,
-        title: "Écologie numérique",
-        description: "Pratiques visant à réduire l'impact environnemental du numérique. Elle encourage un usage plus sobre des technologies.",
-        image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=250&fit=crop&crop=center",
-        icon: <Leaf className="w-8 h-8 text-green-500" />,
-        color: "from-green-50 to-emerald-100",
-        category: "Écologie"
-    },
-    {
-        id: 2,
-        title: "Sobriété numérique",
-        description: "Démarche qui consiste à réduire l'usage superflu du numérique afin de limiter son impact écologique. Elle encourage des choix technologiques responsables et essentiels.",
-        image: "https://www.gide.net/wp-content/uploads/2021/05/ecoconception-sobriete-numerique.png",
-        icon: <Leaf className="w-8 h-8 text-emerald-500" />,
-        color: "from-emerald-50 to-teal-100",
-        category: "Écologie"
-    },
-    {
-        id: 3,
-        title: "Développement durable numérique",
-        description: "Approches technologiques qui intègrent les principes du développement durable dans la conception et l'utilisation des outils numériques.",
-        image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=250&fit=crop&crop=center",
-        icon: <Leaf className="w-8 h-8 text-green-600" />,
-        color: "from-green-100 to-emerald-50",
-        category: "Écologie"
-    },
-    {
-        id: 4,
-        title: "Cybersécurité fondamentale",
-        description: "Principes essentiels de la sécurité numérique pour protéger les données personnelles et professionnelles contre les cybermenaces.",
-        image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop&crop=center",
-        icon: <Shield className="w-8 h-8 text-red-500" />,
-        color: "from-red-50 to-orange-100",
-        category: "Sécurité"
-    },
-    {
-        id: 5,
-        title: "Protection des données",
-        description: "Méthodes et outils pour sécuriser et protéger les informations sensibles dans l'environnement numérique actuel.",
-        image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=250&fit=crop&crop=center",
-        icon: <Shield className="w-8 h-8 text-blue-600" />,
-        color: "from-blue-50 to-indigo-100",
-        category: "Sécurité"
-    },
-    {
-        id: 6,
-        title: "Sécurité des réseaux",
-        description: "Techniques avancées pour sécuriser les infrastructures réseau et prévenir les intrusions malveillantes.",
-        image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop&crop=center",
-        icon: <Shield className="w-8 h-8 text-purple-600" />,
-        color: "from-purple-50 to-violet-100",
-        category: "Sécurité"
-    }
-];
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
+import coursesData from '../../data/courses.json';
 
 const CourseCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);

@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Écologie numérique",
+    "description": "Pratiques visant à réduire l'impact environnemental du numérique. Elle encourage un usage plus sobre des technologies.",
+    "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=250&fit=crop&crop=center",
+    "category": "Écologie"
+  },
+  {
+    "id": 2,
+    "title": "Sobriété numérique",
+    "description": "Démarche qui consiste à réduire l'usage superflu du numérique afin de limiter son impact écologique. Elle encourage des choix technologiques responsables et essentiels.",
+    "image": "https://www.gide.net/wp-content/uploads/2021/05/ecoconception-sobriete-numerique.png",
+    "category": "Écologie"
+  },
+  {
+    "id": 3,
+    "title": "Développement durable numérique",
+    "description": "Approches technologiques qui intègrent les principes du développement durable dans la conception et l'utilisation des outils numériques.",
+    "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=250&fit=crop&crop=center",
+    "category": "Écologie"
+  },
+  {
+    "id": 4,
+    "title": "Cybersécurité fondamentale",
+    "description": "Principes essentiels de la sécurité numérique pour protéger les données personnelles et professionnelles contre les cybermenaces.",
+    "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop&crop=center",
+    "category": "Sécurité"
+  },
+  {
+    "id": 5,
+    "title": "Protection des données",
+    "description": "Méthodes et outils pour sécuriser et protéger les informations sensibles dans l'environnement numérique actuel.",
+    "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=250&fit=crop&crop=center",
+    "category": "Sécurité"
+  },
+  {
+    "id": 6,
+    "title": "Sécurité des réseaux",
+    "description": "Techniques avancées pour sécuriser les infrastructures réseau et prévenir les intrusions malveillantes.",
+    "image": "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop&crop=center",
+    "category": "Sécurité"
+  }
+]

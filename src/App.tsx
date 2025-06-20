@@ -18,13 +18,13 @@ import ProtectedRoute from "./components/web/ProtectedRoute.tsx";
 import { useLocation } from 'react-router-dom';
 
 
-
 export default function App() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const location = useLocation();
 
     const isLoginPage = location.pathname === '/login';
+    const isLessonListPage = location.pathname.startsWith('/lesson') && location.pathname.split('/').length === 3;
 
     return (
         <AuthProvider>
@@ -41,7 +41,7 @@ export default function App() {
                     <Route path="/quiz/:category/:id" element={<ProtectedRoute><QuizDetail /></ProtectedRoute>} />
                     <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
                 </Routes>
-                {!isLoginPage && <FooterComponent />}
+                {!isLoginPage && <FooterComponent noMarginTop={isLessonListPage} />}
         </AuthProvider>
     );
 }

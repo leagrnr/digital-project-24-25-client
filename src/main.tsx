@@ -5,13 +5,14 @@ import App from './App.tsx'
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router } from "react-router-dom";
 import theme from './theme';
+import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <ThemeProvider theme={theme}>
-            <Router>
+        <BrowserRouter>
+            <ThemeProvider theme={theme}>
                 <App />
-            </Router>
-        </ThemeProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     </StrictMode>,
 )
