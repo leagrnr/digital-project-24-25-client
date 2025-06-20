@@ -1,10 +1,13 @@
 import Logo from '../../assets/logo.svg';
+type FooterProps = {
+    noMarginTop?: boolean;
+};
 
-export default function FooterComponent() {
+export default function FooterComponent({ noMarginTop }: FooterProps)  {
     return (
-        <footer className="bg-gray-100 py-8 mt-[5vh]">
+        <footer className={`bg-gray-100 py-8 ${noMarginTop ? '' : 'mt-[5vh]'}`}>
             <div className="flex flex-col md:flex-row items-center md:items-start justify-around gap-8 md:gap-0">
-                {/* Logo */}
+             {/* Logo */}
                 <div className="flex-shrink-0 mb-6 md:mb-0">
                     <img src={Logo} alt="Logo" className="w-24 h-auto" />
                 </div>

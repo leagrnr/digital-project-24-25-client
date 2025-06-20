@@ -12,6 +12,7 @@ import QuizDetail from "./views/QuizDetail.tsx";
 import QuizList from "./views/QuizList.tsx";
 import Setting from "./views/Setting.tsx";
 import FooterComponent from "./components/web/FooterComponent.tsx";
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -19,25 +20,25 @@ import FooterComponent from "./components/web/FooterComponent.tsx";
 export default function App() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const location = useLocation();
+    const isLessonListPage = location.pathname.startsWith('/lesson') && location.pathname.split('/').length === 3;
 
     return (
-        <>
-            <Router>
+        <div className="flex flex-col min-h-screen">
                 <Navbar />
                 {isMobile && <MobileNavigation />}
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/lesson/:category" element={<LessonList />} />
-                    <Route path="/lesson/:category/:id" element={<LessonDetail />} />
-                    <Route path="/quiz/:category" element={<QuizList />} />
-                    <Route path="/quiz/:category/:id" element={<QuizDetail />} />
-                    <Route path="/quiz/:category/:id" element={<QuizDetail />} />
-                    <Route path="/setting" element={<Setting />} />
-                </Routes>
-                < FooterComponent />
-            </Router>
-
-        </>
+                <main className="flex-grow">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/lesson/:category" element={<LessonList />} />
+                        <Route path="/lesson/:category/:id" element={<LessonDetail />} />
+                        <Route path="/quiz/:category" element={<QuizList />} />
+                        <Route path="/quiz/:category/:id" element={<QuizDetail />} />
+                        <Route path="/setting" element={<Setting />} />
+                    </Routes>
+                </main>
+                <FooterComponent noMarginTop={isLessonListPage} />
+        </div>
     );
 }

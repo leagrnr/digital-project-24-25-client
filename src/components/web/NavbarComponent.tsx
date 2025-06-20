@@ -79,7 +79,11 @@ export default function NavBar() {
                                                             onClick={handleClose}
                                                             sx={{ color: '#6E866B' }}
                                                             component={Link}
-                                                            to={`/${label.toLowerCase()}/${item}`}
+                                                            to={
+                                                                label === "Cours"
+                                                                    ? `/lesson/${item.toLowerCase()}`
+                                                                    : `/${label.toLowerCase()}/${item.toLowerCase()}`
+                                                            }
                                                         >
                                                             {item}
                                                         </MenuItem>
@@ -89,7 +93,15 @@ export default function NavBar() {
                                         ) : (
                                             <Button
                                                 component={Link}
-                                                to={label === "Accueil" ? "/" : label === "Tableau de bord" ? "/dashboard" : `/${label.toLowerCase().replace(/\s+/g, '-')}`}
+                                                to={
+                                                    label === "Accueil"
+                                                        ? "/"
+                                                        : label === "Tableau de bord"
+                                                            ? "/dashboard"
+                                                            : label === "Cours"
+                                                                ? `/lesson/${item.toLowerCase()}`
+                                                                : `/${label.toLowerCase()}/${item.toLowerCase()}`
+                                                }
                                             >
                                                 {label}
                                             </Button>
