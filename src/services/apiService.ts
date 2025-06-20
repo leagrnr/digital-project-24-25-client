@@ -386,6 +386,14 @@ class ApiService {
             method: 'DELETE',
         });
     }
+
+    // === AUTHENTICATION ===
+    async login(email: string, password: string): Promise<{ token: string }> {
+        return this.request<{ token: string }>('/api/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+        });
+    }
 }
 
 const apiService = new ApiService();
