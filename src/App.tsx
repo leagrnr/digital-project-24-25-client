@@ -3,7 +3,8 @@ import { useTheme } from '@mui/material/styles';
 import MobileNavigation from './components/mobile/NavbarComponent';
 import Navbar from './components/web/NavbarComponent';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { Routes, Route } from 'react-router-dom';
 import Home from '../src/views/Home';
 import Dashboard from '../src/views/Dashboard';
 import LessonList from '../src/views/LessonList';
@@ -12,32 +13,35 @@ import QuizDetail from "./views/QuizDetail.tsx";
 import QuizList from "./views/QuizList.tsx";
 import Setting from "./views/Setting.tsx";
 import FooterComponent from "./components/web/FooterComponent.tsx";
-
+import Login from './views/Login';
+import ProtectedRoute from "./components/web/ProtectedRoute.tsx";
+import { useLocation } from 'react-router-dom';
 
 
 
 export default function App() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const location = useLocation();
+
+    const isLoginPage = location.pathname === '/login';
 
     return (
-        <>
-            <Router>
-                <Navbar />
-                {isMobile && <MobileNavigation />}
+        <AuthProvider>
+                {!isLoginPage && <Navbar />}
+                {isMobile && !isLoginPage && <MobileNavigation />}
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/lesson/:category" element={<LessonList />} />
-                    <Route path="/lesson/:category/:id" element={<LessonDetail />} />
-                    <Route path="/quiz/:category" element={<QuizList />} />
-                    <Route path="/quiz/:category/:id" element={<QuizDetail />} />
-                    <Route path="/quiz/:category/:id" element={<QuizDetail />} />
-                    <Route path="/setting" element={<Setting />} />
-                </Routes>
-                < FooterComponent />
-            </Router>
+                    <Route path="/login" element={<Login />} />
 
-        </>
+                    <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                    <Route path="/lesson/:category" element={<ProtectedRoute><LessonList /></ProtectedRoute>} />
+                    <Route path="/lesson/:category/:id" element={<ProtectedRoute><LessonDetail /></ProtectedRoute>} />
+                    <Route path="/quiz/:category" element={<ProtectedRoute><QuizList /></ProtectedRoute>} />
+                    <Route path="/quiz/:category/:id" element={<ProtectedRoute><QuizDetail /></ProtectedRoute>} />
+                    <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
+                </Routes>
+                {!isLoginPage && <FooterComponent />}
+        </AuthProvider>
     );
 }
