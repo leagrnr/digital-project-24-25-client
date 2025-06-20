@@ -27,7 +27,7 @@ class ApiService {
     private async request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
         const url = `${this.baseURL}${endpoint}`;
 
-        const token = localStorage.getItem('token'); // 👈 ajoute ça
+        const token = localStorage.getItem('token');
         const config: RequestInit = {
             headers: {
                 'Content-Type': 'application/json',
@@ -399,10 +399,16 @@ class ApiService {
 
     // === AUTHENTICATION ===
     async login(email: string, password: string): Promise<void> {
-        await this.request('/api/login', {
+        const response = await this.request<{ access_token: string; token_type: string }>('/api/login', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
         });
+
+        if (response.access_token && response.token_type) {
+            localStorage.setItem('token', `${response.token_type} ${response.access_token}`);
+        } else {
+            throw new Error('Token non reçu dans la réponse du serveur');
+        }
     }
 }
 
