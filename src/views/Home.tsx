@@ -1,11 +1,14 @@
-// import UserList from "../components/web/UserList.tsx";
+// import { useAuth } from '../contexts/AuthContext.tsx';
 import AnnecdoteComponent from "../components/web/AnnecdoteComponent.tsx";
 import ResultComponent from "../components/web/ResultComponent.tsx";
 import CourseCarousel from "../components/web/CarouselLessonComponent.tsx";
 
 export default function Home() {
+    // const { user } = useAuth();
+
     return (
         <div>
+            {/*<h2 className={"mt-[15vh]"}>Bienvenue{user?.email ? `, ${user.email}` : ''} !</h2>*/}
             <ResultComponent />
             <AnnecdoteComponent />
             <CourseCarousel />

@@ -26,41 +26,55 @@ class ApiService {
 
     private async request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
         const url = `${this.baseURL}${endpoint}`;
+        const token = localStorage.getItem('token');
+        const headers: Record<string, string> = {
+            'Content-Type': 'application/json',
+            ...options.headers,
+        };
+        if (token) {
+            headers['Authorization'] = token; // le token est déjà sous la forme "Bearer <token>"
+        }
         const config: RequestInit = {
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            },
+            headers,
+            credentials: 'include',
             ...options,
         };
 
         try {
             const response = await fetch(url, config);
+            const contentType = response.headers.get('content-type');
+            let data: any = null;
+
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                data = await response.text();
+            }
 
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
                 const error: ApiError = {
-                    message: errorData.message || `HTTP error! status: ${response.status}`,
+                    message: data?.message || `HTTP error! status: ${response.status}`,
                     status: response.status,
-                    errors: errorData.errors,
+                    errors: data?.errors,
                 };
                 throw error;
             }
 
-            return await response.json();
+            return data;
         } catch (error) {
             if (error instanceof Error && 'status' in error) {
-                throw error; // Re-throw API errors
+                throw error;
             }
-
             console.error('API request failed:', error);
             throw new Error('Network error or request failed');
         }
     }
 
+
     // === USERS ===
     async getCurrentUser(): Promise<User> {
-        return this.request<User>('/api/user');
+        const response = await this.request<{ user: User }>('/api/user');
+        return response.user;
     }
 
     async getUsers(): Promise<User[]> {
@@ -385,6 +399,20 @@ class ApiService {
         return this.request<void>(`/api/anecdoctes/${anecdoteId}`, {
             method: 'DELETE',
         });
+    }
+
+    // === AUTHENTICATION ===
+    async login(email: string, password: string): Promise<void> {
+        const response = await this.request<{ access_token: string; token_type: string }>('/api/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (response.access_token && response.token_type) {
+            localStorage.setItem('token', `${response.token_type} ${response.access_token}`);
+        } else {
+            throw new Error('Token non reçu dans la réponse du serveur');
+        }
     }
 }
 
