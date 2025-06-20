@@ -17,20 +17,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            apiService.getCurrentUser()
-                .then(setUser)
-                .catch(() => logout())
-                .finally(() => setLoading(false));
-        } else {
-            setLoading(false);
-        }
+        apiService.getCurrentUser()
+            .then(setUser)
+            .catch(() => logout())
+            .finally(() => setLoading(false));
     }, []);
 
     const login = async (email: string, password: string) => {
-        const { token } = await apiService.login(email, password);
-        localStorage.setItem('token', token);
+        await apiService.login(email, password);
         const currentUser = await apiService.getCurrentUser();
         setUser(currentUser);
     };

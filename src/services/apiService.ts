@@ -26,37 +26,47 @@ class ApiService {
 
     private async request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
         const url = `${this.baseURL}${endpoint}`;
+
+        const token = localStorage.getItem('token'); // 👈 ajoute ça
         const config: RequestInit = {
             headers: {
                 'Content-Type': 'application/json',
                 ...options.headers,
             },
+            credentials: 'include',
             ...options,
         };
 
         try {
             const response = await fetch(url, config);
+            const contentType = response.headers.get('content-type');
+            let data: any = null;
+
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                data = await response.text();
+            }
 
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
                 const error: ApiError = {
-                    message: errorData.message || `HTTP error! status: ${response.status}`,
+                    message: data?.message || `HTTP error! status: ${response.status}`,
                     status: response.status,
-                    errors: errorData.errors,
+                    errors: data?.errors,
                 };
                 throw error;
             }
 
-            return await response.json();
+            return data;
         } catch (error) {
             if (error instanceof Error && 'status' in error) {
-                throw error; // Re-throw API errors
+                throw error;
             }
-
             console.error('API request failed:', error);
             throw new Error('Network error or request failed');
         }
     }
+
 
     // === USERS ===
     async getCurrentUser(): Promise<User> {
@@ -388,8 +398,8 @@ class ApiService {
     }
 
     // === AUTHENTICATION ===
-    async login(email: string, password: string): Promise<{ token: string }> {
-        return this.request<{ token: string }>('/api/login', {
+    async login(email: string, password: string): Promise<void> {
+        await this.request('/api/login', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
         });

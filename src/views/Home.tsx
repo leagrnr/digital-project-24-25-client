@@ -1,14 +1,21 @@
-// import UserList from "../components/web/UserList.tsx";
-import AnnecdoteComponent from "../components/web/AnnecdoteComponent.tsx";
-import ResultComponent from "../components/web/ResultComponent.tsx";
-import CourseCarousel from "../components/web/CarouselLessonComponent.tsx";
+import { useAuth } from '../contexts/AuthContext';
+import {useEffect} from "react";
+
+
 
 export default function Home() {
+    const { user, loading } = useAuth();
+
+    useEffect(() => {
+        console.log("User:", user);
+    }, [user]);
+
+    if (loading) return <p>Chargement...</p>;
+
+
     return (
         <div>
-            <ResultComponent />
-            <AnnecdoteComponent />
-            <CourseCarousel />
+            < h2 className={"mt-[15vh]"}>Bienvenue{user?.email ? `, ${user.email}` : ''} !</h2>
         </div>
     );
 }
