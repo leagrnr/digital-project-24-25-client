@@ -28,20 +28,23 @@ export default function App() {
 
     return (
         <AuthProvider>
+            <div className="min-h-screen flex flex-col">
                 {!isLoginPage && <Navbar />}
                 {isMobile && !isLoginPage && <MobileNavigation />}
-                <Routes>
-                    <Route path="/login" element={<Login />} />
-
-                    <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-                    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                    <Route path="/lesson/:category" element={<ProtectedRoute><LessonList /></ProtectedRoute>} />
-                    <Route path="/lesson/:category/:id" element={<ProtectedRoute><LessonDetail /></ProtectedRoute>} />
-                    <Route path="/quiz/:category" element={<ProtectedRoute><QuizList /></ProtectedRoute>} />
-                    <Route path="/quiz/:category/:id" element={<ProtectedRoute><QuizDetail /></ProtectedRoute>} />
-                    <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
-                </Routes>
+                <main className="flex-1">
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                        <Route path="/lesson/:id" element={<ProtectedRoute><LessonDetail /></ProtectedRoute>} />
+                        <Route path="/lesson" element={<ProtectedRoute><LessonList /></ProtectedRoute>} />
+                        <Route path="/quiz/:id" element={<ProtectedRoute><QuizDetail /></ProtectedRoute>} />
+                        <Route path="/quiz" element={<ProtectedRoute><QuizList /></ProtectedRoute>} />
+                        <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
+                    </Routes>
+                </main>
                 {!isLoginPage && <FooterComponent noMarginTop={isLessonListPage} />}
+            </div>
         </AuthProvider>
     );
 }
