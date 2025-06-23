@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import apiService from '../../services/apiService';
 import Ampoule from '../../assets/ampoule.png';
 
-export default function AnnecdoteComponent() {
-    const [anecdote, setAnecdote] = useState<string | null>(null);
+export default function AnecdoteComponent() {
+    const [ setAnecdote] = useState<string | null>(null);
 
     useEffect(() => {
         apiService.getAnecdotes()
