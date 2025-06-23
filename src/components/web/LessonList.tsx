@@ -60,7 +60,6 @@ const LessonList: React.FC = () => {
         });
     }, []);
 
-    // Map id_categorie vers le nom
     const lessonsWithCategoryName = useMemo(() => {
         return lessons.map((l: LessonFromApi) => {
             const categoryObj = categories.find(c => c.id === l.id_categorie);
