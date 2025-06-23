@@ -372,7 +372,7 @@ class ApiService {
 
     // === ANECDOTES ===
     async getAnecdotes(): Promise<Anecdote[]> {
-        return this.request<Anecdote[]>('/api/anecdoctes');
+        return this.request<Anecdote[]>('/api/anecdoctes/random');
     }
 
     async createAnecdote(anecdoteData: CreateAnecdoteData): Promise<Anecdote> {

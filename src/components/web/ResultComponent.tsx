@@ -4,11 +4,13 @@ import {
     BarChart, Bar
 } from 'recharts';
 import dataJson from '../../data/result.json';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResultComponent() {
     const [data, setData] = useState<null | typeof dataJson>(null);
     const [isMobile, setIsMobile] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setData(dataJson);
@@ -62,7 +64,6 @@ export default function ResultComponent() {
 
     return (
         <div className="flex flex-col lg:flex-row items-center justify-between bg-custom-primary mt-[10vh] rounded-b-3xl px-4 md:px-8 py-8 md:py-12 min-h-[70vh] w-full">
-            {/* Texte à gauche */}
             <div className="w-full lg:w-[40%] text-white space-y-6 md:space-y-8 mx-auto">
                 <h2 className="text-xl md:text-3xl font-semibold">Vos résultats de juin</h2>
                 <p>Bravo ! Ton empreinte carbone est très faible.</p>
@@ -75,20 +76,23 @@ export default function ResultComponent() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4 mt-6 md:mt-8 w-full">
-                    <button className="bg-custom-tertiary hover:bg-yellow-400 text-white font-semibold px-4 md:px-6 py-3 rounded-full transition-all duration-200 hover:shadow-lg hover:scale-105 w-full sm:w-auto">
+                    <button
+                        className="bg-custom-tertiary hover:bg-yellow-400 text-white font-semibold px-4 md:px-6 py-3 rounded-full transition-all duration-200 hover:shadow-lg hover:scale-105 w-full sm:w-auto"
+                        onClick={() => navigate('/dashboard')}
+                    >
                         Mon tableau de bord
                     </button>
-                    <button className="border border-white text-white font-semibold px-4 md:px-6 py-3 rounded-full transition-all duration-200 hover:bg-white hover:text-black hover:shadow-lg hover:scale-105 w-full sm:w-auto">
+                    <button
+                        className="border border-white text-white font-semibold px-4 md:px-6 py-3 rounded-full transition-all duration-200 hover:bg-white hover:text-black hover:shadow-lg hover:scale-105 w-full sm:w-auto"
+                        onClick={() => { window.location.href = '/dashboard#carbon-test';}} >
                         Test bilan carbone
                     </button>
                 </div>
             </div>
 
-            {/* GRAPHIQUES */}
             <div className="w-full lg:w-[40%] mt-8 lg:mt-0 flex flex-col items-center mx-auto">
                 {isMobile ? (
                     <div className="relative w-full max-w-full">
-                        {/* Slide actif */}
                         <div className="bg-white p-4 md:p-6 rounded-xl shadow-md transition-all duration-300">
                             <h3 className="text-lg font-semibold mb-4 text-gray-800">
                                 {slides[currentSlide].title}
@@ -96,7 +100,6 @@ export default function ResultComponent() {
                             {slides[currentSlide].content}
                         </div>
 
-                        {/* Flèches navigation */}
                         <button
                             onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
                             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white border border-gray-300 shadow p-2 rounded-full hover:scale-105 transition"

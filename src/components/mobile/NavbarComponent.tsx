@@ -64,14 +64,14 @@ export default function MobileNavigation() {
                     icon={<BookOutlinedIcon />}
                     sx={actionStyle}
                     component={Link}
-                    to="/lesson/Ecologie"
+                    to="/lesson"
                 />
                 <BottomNavigationAction
                     label="Quiz"
                     icon={<QuizOutlinedIcon />}
                     sx={actionStyle}
                     component={Link}
-                    to="/quiz/Ecologie"
+                    to="/quiz"
                 />
             </BottomNavigation>
         </Box>
