@@ -65,9 +65,23 @@ const LessonDetail: React.FC = () => {
                         {formattedDate}
                     </Typography>
                 )}
-                <Typography
-                    variant="body1"
-                    sx={{ textAlign: 'justify', mb: 3 }}
+                <Box
+                    sx={{
+                        textAlign: 'justify',
+                        mb: 3,
+                        '& h2': { fontSize: '1.2rem', fontWeight: 'bold', mt: 2 },
+                        '& ul': {
+                            pl: 3,
+                            mb: 2,
+                            listStyleType: 'disc',
+                            listStylePosition: 'inside'
+                        },
+                        '& li': {
+                            mb: 0.5,
+                            display: 'list-item'
+                        },
+                        '& p': { mb: 2 },
+                    }}
                     dangerouslySetInnerHTML={{ __html: lesson.content }}
                 />
                 <Button
