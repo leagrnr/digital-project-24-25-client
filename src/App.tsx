@@ -15,6 +15,7 @@ import Setting from "./views/Setting.tsx";
 import FooterComponent from "./components/web/FooterComponent.tsx";
 import Login from './views/Login';
 import ProtectedRoute from "./components/web/ProtectedRoute.tsx";
+import Landing from './views/Landing';
 import { useLocation } from 'react-router-dom';
 
 
@@ -25,6 +26,7 @@ export default function App() {
 
     const isLoginPage = location.pathname === '/login';
     const isLessonListPage = location.pathname.startsWith('/lesson') && location.pathname.split('/').length === 3;
+    const isLandingPage = location.pathname === '/landing';
 
     return (
         <AuthProvider>
@@ -34,6 +36,8 @@ export default function App() {
                 <main className="flex-1">
                     <Routes>
                         <Route path="/login" element={<Login />} />
+                        <Route path="/landing" element={<Landing />} />
+                      
                         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                         <Route path="/lesson/:id" element={<ProtectedRoute><LessonDetail /></ProtectedRoute>} />
@@ -43,7 +47,7 @@ export default function App() {
                         <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
                     </Routes>
                 </main>
-                {!isLoginPage && <FooterComponent noMarginTop={isLessonListPage} />}
+                {!isLoginPage && <FooterComponent noMarginTop={isLessonListPage || isLandingPage} />}
             </div>
         </AuthProvider>
     );
