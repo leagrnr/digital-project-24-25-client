@@ -1,10 +1,10 @@
 {
   "progression": [
-    { "month": "Janvier", "coursLus": 5, "quizzReussis": 3 },
-    { "month": "Février", "coursLus": 8, "quizzReussis": 5 },
-    { "month": "Mars", "coursLus": 10, "quizzReussis": 6 },
-    { "month": "Avril", "coursLus": 12, "quizzReussis": 8 },
-    { "month": "Mai", "coursLus": 18, "quizzReussis": 14 },
-    { "month": "Juin", "coursLus": 20, "quizzReussis": 17 }
+    { "month": "Janvier", "coursLus": 0, "quizzReussis": 0 },
+    { "month": "Février", "coursLus": 1, "quizzReussis": 2 },
+    { "month": "Mars", "coursLus": 2, "quizzReussis": 2 },
+    { "month": "Avril", "coursLus": 3, "quizzReussis": 2 },
+    { "month": "Mai", "coursLus": 3, "quizzReussis": 3 },
+    { "month": "Juin", "coursLus": 5, "quizzReussis": 4 }
   ]
 }

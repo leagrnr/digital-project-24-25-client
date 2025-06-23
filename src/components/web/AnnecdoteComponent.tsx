@@ -9,7 +9,7 @@ export default function AnnecdoteComponent() {
         apiService.getAnecdotes()
             .then(data => {
                 if (data.length > 0) {
-                    setAnecdote(data[0].texte); // ou le champ approprié
+                    setAnecdote(data[0].texte);
                 }
             })
             .catch(() => setAnecdote(null));
@@ -23,7 +23,7 @@ export default function AnnecdoteComponent() {
             <div className="flex bg-custom-primary h-full flex-col w-full md:w-[90vw] justify-center">
                 <h2 className="text-white font-bold text-xl md:text-2xl lg:text-3xl text-center md:text-left">Le saviez-vous?</h2>
                 <p className="text-white text-sm md:text-base lg:text-base text-center md:text-left">
-                    {anecdote ?? "Chargement de l'anecdote..."}
+                    {"Un email avec une pièce jointe lourde peut avoir une empreinte carbone similaire à celle d'une ampoule allumée pendant une heure ? Les serveurs et les centres de données consomment beaucoup d'énergie pour stocker et transférer ces données."}
                 </p>
             </div>
         </div>

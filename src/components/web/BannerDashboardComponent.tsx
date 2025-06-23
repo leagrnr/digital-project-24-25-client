@@ -1,7 +1,7 @@
 import Avatar from '../../assets/avatar-04.svg'
 import result from '../../data/result.json'
 
-const TOTAL = 36;
+const TOTAL = 6;
 
 export default function BannerDashboardComponent() {
     const last = result.progression[result.progression.length - 1];
