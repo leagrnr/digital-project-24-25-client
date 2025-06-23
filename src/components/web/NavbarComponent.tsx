@@ -82,7 +82,9 @@ export default function NavBar() {
                                                             to={
                                                                 label === "Cours"
                                                                     ? `/lesson?category=${encodeURIComponent(item)}`
-                                                                    : `/${label.toLowerCase()}/${item.toLowerCase()}`
+                                                                    : label === "Quiz"
+                                                                        ? `/quiz?category=${encodeURIComponent(item)}`
+                                                                        : `/${label.toLowerCase()}/${item.toLowerCase()}`
                                                             }
                                                         >
                                                             {item}

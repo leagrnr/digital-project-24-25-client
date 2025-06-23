@@ -27,6 +27,7 @@ export default function App() {
     const isLoginPage = location.pathname === '/login';
     const isLessonListPage = location.pathname.startsWith('/lesson') && location.pathname.split('/').length === 3;
     const isLandingPage = location.pathname === '/landing';
+    const isQuizDetailPage = location.pathname.startsWith('/quiz') && location.pathname.split('/').length === 3;
 
     return (
         <AuthProvider>
@@ -47,7 +48,7 @@ export default function App() {
                         <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
                     </Routes>
                 </main>
-                {!isLoginPage && <FooterComponent noMarginTop={isLessonListPage || isLandingPage} />}
+                {!isLoginPage && <FooterComponent noMarginTop={isLessonListPage || isLandingPage || isQuizDetailPage} />}
             </div>
         </AuthProvider>
     );
