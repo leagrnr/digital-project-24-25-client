@@ -298,7 +298,12 @@ class ApiService {
         return this.request<Reply[]>('/api/replies');
     }
 
-    async createReply(replyData: CreateReplyData): Promise<Reply> {
+    async createReply(replyData: {
+        id_user: number;
+        id_question: number;
+        score: number;
+        solve_at: string
+    }): Promise<Reply> {
         return this.request<Reply>('/api/replies', {
             method: 'POST',
             body: JSON.stringify(replyData),
@@ -316,7 +321,7 @@ class ApiService {
         });
     }
 
-    async patchReply(replyId: number, replyData: Partial<UpdateReplyData>): Promise<Reply> {
+    async patchReply(replyId: number, replyData: { score: number; solve_at: string }): Promise<Reply> {
         return this.request<Reply>(`/api/replies/${replyId}`, {
             method: 'PATCH',
             body: JSON.stringify(replyData),

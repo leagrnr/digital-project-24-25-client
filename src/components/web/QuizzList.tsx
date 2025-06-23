@@ -1,27 +1,38 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import apiService from '../../services/apiService';
 import {
     Table, TableBody, TableCell, TableContainer,
     TableHead, TableRow, Paper, Box, Select, MenuItem,
     FormControl, InputLabel, Typography, Button
 } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
+import apiService from '../../services/apiService';
+import { useAuth } from '../../contexts/AuthContext';
 
 type Quiz = {
     id: number;
     title: string;
-    description?: string;
-    category_id?: number;
+    category: {
+        id: number;
+        name: string;
+    };
 };
 
-type Category = {
+type Question = {
     id: number;
-    name: string;
+    id_quizz: number;
+};
+
+type Reply = {
+    id_user: number;
+    id_question: number;
+    score: number;
 };
 
 const QuizList: React.FC = () => {
+    const { user } = useAuth();
     const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-    const [categories, setCategories] = useState<Category[]>([]);
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [replies, setReplies] = useState<Reply[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<string>('all');
     const location = useLocation();
 
@@ -32,40 +43,47 @@ const QuizList: React.FC = () => {
     }, [location.search]);
 
     useEffect(() => {
-        apiService.getCategories().then((data) => {
-            setCategories(Array.isArray(data) ? data : data.data);
+        apiService.getQuizzes().then(res => {
+            setQuizzes(res.data ?? res);
         });
-        apiService.getQuizzes().then((data) => {
-            setQuizzes(Array.isArray(data) ? data : data.data);
+        apiService.getQuestions().then(res => {
+            setQuestions(res.data ?? res);
+        });
+        apiService.getReplies().then(res => {
+            setReplies(res.data ?? res);
         });
     }, []);
 
-    const quizzesWithCategoryName = useMemo(() => {
-        return quizzes.map((q) => {
-            const categoryObj = categories.find(c => c.id === q.category_id);
+    const quizzesWithStatus = useMemo(() => {
+        return quizzes.map((quiz) => {
+            const quizQuestions = questions.filter(q => q.id_quizz === quiz.id);
+            const hasAllCorrect = quizQuestions.every(q =>
+                replies.some(r => r.id_user === user.id && r.id_question === q.id && r.score === 1)
+            );
             return {
-                ...q,
-                category: categoryObj ? categoryObj.name : 'Inconnu',
+                ...quiz,
+                isCompleted: hasAllCorrect,
             };
         });
-    }, [quizzes, categories]);
-
-    const categoryNames = useMemo(
-        () => Array.from(new Set(categories.map(c => c.name))),
-        [categories]
-    );
+    }, [quizzes, questions, replies, user.id]);
 
     const filteredQuizzes = useMemo(() => {
-        return quizzesWithCategoryName.filter(quiz =>
-            selectedCategory === 'all' || quiz.category === selectedCategory
+        return quizzesWithStatus.filter(quiz =>
+            selectedCategory === 'all' || quiz.category.name === selectedCategory
         );
-    }, [selectedCategory, quizzesWithCategoryName]);
+    }, [selectedCategory, quizzesWithStatus]);
+
+    const categoryNames = useMemo(() => {
+        const unique = new Set(quizzes.map(q => q.category.name));
+        return Array.from(unique);
+    }, [quizzes]);
 
     return (
         <Box sx={{ maxWidth: 1000, margin: '15vh auto 0 auto', px: { xs: 1, md: 0 } }}>
             <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: 3 }}>
                 Vos quizz
             </Typography>
+
             <Box sx={{ display: 'flex', gap: 2, marginBottom: 2 }}>
                 <FormControl sx={{ minWidth: 200 }}>
                     <InputLabel>Catégorie</InputLabel>
@@ -81,13 +99,14 @@ const QuizList: React.FC = () => {
                     </Select>
                 </FormControl>
             </Box>
+
             <TableContainer component={Paper}>
                 <Table stickyHeader size="small">
                     <TableHead>
                         <TableRow>
                             <TableCell>Titre</TableCell>
                             <TableCell>Catégorie</TableCell>
-                            <TableCell>Description</TableCell>
+                            <TableCell>État</TableCell>
                             <TableCell>Actions</TableCell>
                         </TableRow>
                     </TableHead>
@@ -95,16 +114,19 @@ const QuizList: React.FC = () => {
                         {filteredQuizzes.map((quiz) => (
                             <TableRow key={quiz.id}>
                                 <TableCell>{quiz.title}</TableCell>
-                                <TableCell>{quiz.category}</TableCell>
-                                <TableCell>{quiz.description}</TableCell>
+                                <TableCell>{quiz.category.name}</TableCell>
+                                <TableCell>
+                                    {quiz.isCompleted ? 'Quiz fait' : 'À faire'}
+                                </TableCell>
                                 <TableCell>
                                     <Button
                                         component={Link}
                                         to={`/quiz/${quiz.id}`}
                                         variant="contained"
+                                        disabled={quiz.isCompleted}
                                         sx={{ backgroundColor: '#F0A202', color: 'white' }}
                                     >
-                                        Voir le quiz
+                                        {quiz.isCompleted ? 'Terminé' : 'Faire le quiz'}
                                     </Button>
                                 </TableCell>
                             </TableRow>
