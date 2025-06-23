@@ -31,8 +31,8 @@ export default function NavBar() {
     const menuItems = {
         Accueil: [],
         "Tableau de bord": [],
-        Cours: ["Ecologie", "Sécurité"],
-        Quiz: ["Ecologie", "Sécurité"],
+        Cours: ["Écologie", "Sécurité"],
+        Quiz: ["Écologie", "Sécurité"],
     };
 
     return (
@@ -81,7 +81,7 @@ export default function NavBar() {
                                                             component={Link}
                                                             to={
                                                                 label === "Cours"
-                                                                    ? `/lesson/${item.toLowerCase()}`
+                                                                    ? `/lesson?category=${encodeURIComponent(item)}`
                                                                     : `/${label.toLowerCase()}/${item.toLowerCase()}`
                                                             }
                                                         >

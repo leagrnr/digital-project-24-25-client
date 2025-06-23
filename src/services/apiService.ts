@@ -32,7 +32,7 @@ class ApiService {
             ...options.headers,
         };
         if (token) {
-            headers['Authorization'] = token; // le token est déjà sous la forme "Bearer <token>"
+            headers['Authorization'] = token;
         }
         const config: RequestInit = {
             headers,
